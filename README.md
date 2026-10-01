@@ -1,48 +1,45 @@
-# Project-03 — Multilingual Chatbot (Python)
+# 🌍 Multilingual Chatbot
 
-This repository contains a small Python prototype of a multilingual chatbot (Streamlit UI + backend client). The remote `backend.py` uses the `groq` client and expects an API key to be provided via environment variables.
+A multilingual conversational AI built with Python, Streamlit, and Groq's LLaMA 3.3 model.
 
-## Prerequisites
-- Python 3.10+ (Windows) or the version used to create the venv
-- PowerShell (Windows)
+## Features
 
-## Setup (PowerShell)
+- Supports English, Spanish, French, German, Hindi, Japanese, Odia, and Arabic
+- Uses `llama-3.3-70b-versatile` through Groq for fast inference
+- Maintains multiple conversations in the Streamlit session
+- Uses environment variables for API-key security
 
-1. Create and activate a virtual environment (use the `py` launcher if available):
+## Run locally
 
-```powershell
-py -3 -m venv .venv
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\.venv\Scripts\Activate.ps1
-```
-
-2. Install dependencies:
-
-```powershell
+```bash
+python -m venv .venv
+# Linux/macOS: source .venv/bin/activate
+# Windows: .\.venv\Scripts\Activate.ps1
 pip install -r Requirements.txt
-```
-
-3. Create a `.env` file from `.env.example` and set your `GROQ_API_KEY`:
-
-```powershell
-copy .env.example .env
-# then edit .env with your secret (do NOT commit .env)
-```
-
-4. Run the UI (Streamlit):
-
-```powershell
+cp .env.example .env  # Windows: copy .env.example .env
+# Add GROQ_API_KEY to .env
 streamlit run ui.py
 ```
 
-## Notes
-- `backend.py` reads the Groq API key from the `GROQ_API_KEY` environment variable and raises an error if it is missing.
-- Do not commit secrets. Use `.env` (ignored by git) or a secure secret manager.
-- If you accidentally committed a secret, rotate/revoke the key immediately.
+## Screenshots
 
-## Files
-- `ui.py` — Streamlit UI
-- `backend.py` — Chat client wrapper (uses `GROQ_API_KEY` env var)
-- `Requirements.txt` — Python dependencies
+Add 2–3 application screenshots under `screenshots/` and reference them here:
 
-If you want, I can also add a `CONTRIBUTING.md` or CI workflow next.
+<!-- ![Chat interface](screenshots/chat-interface.png) -->
+<!-- ![Language selector](screenshots/language-selector.png) -->
+<!-- ![Conversation history](screenshots/conversation-history.png) -->
+
+## Security
+
+`.env`, virtual environments, Python caches, and SSH keys are excluded by `.gitignore`. If a credential has ever been committed, revoke it and issue a replacement; deleting the current file does not remove it from Git history.
+
+## Deployment
+
+Deploy from Streamlit Community Cloud and add the resulting app URL here after deployment. Do not put the Groq key in the repository; configure `GROQ_API_KEY` in Streamlit Secrets.
+
+## Structure
+
+- `ui.py` — Streamlit interface
+- `backend.py` — Groq client and chat logic
+- `Requirements.txt` — dependencies
+- `.env.example` — safe configuration template
